@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  --paper: #f8f7f2;
+  --butter: #f5eecf;
+  --ink: #162330;
+  --muted: #66717a;
+  --line: #d9d9d1;
+  --coral: #e45f49;
+  --blue: #9cc9d8;
+  --green: #a9c9a4;
+  --display: "Space Grotesk", sans-serif;
+  --body: "DM Sans", sans-serif;
+  font-family: var(--body);
+  color: var(--muted);
+  background: var(--paper);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+}
+button,
+input {
+  font-family: inherit;
+}
