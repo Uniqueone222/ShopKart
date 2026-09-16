@@ -7,6 +7,7 @@ import Login from "../src/pages/Login.jsx";
 import Signup from "../src/pages/Signup.jsx";
 import PublicRoute from "./components/PublicRoute.jsx";
 import ProtectedRoute from "./components/ProtectedROute.jsx";
+import Profile from "./pages/Profile.jsx";
 function App() {
   return (
     <AuthProvider>
@@ -16,6 +17,7 @@ function App() {
             <Routes>
               <Route path="/" element={<PublicRoute><Landing /></PublicRoute>} />
               <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+              <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
               <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
               <Route path="/signup" element={<PublicRoute><Signup /></PublicRoute>} />
             </Routes>

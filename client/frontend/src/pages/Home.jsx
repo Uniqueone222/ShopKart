@@ -10,6 +10,9 @@ const Home = () => {
     setUser(null);
     navigate("/login");
   };
+  const handleProfile = () =>{
+    navigate("/profile")
+  }
   return (
     <div className="home-page bg-[var(--paper)]">
       <header className="site-header sticky top-0 z-20 h-[78px] border-b border-[var(--line)] bg-[var(--paper)]/95 px-5 backdrop-blur sm:px-10 lg:px-[76px]">
@@ -53,6 +56,7 @@ const Home = () => {
               <button
                 className="header-login transition-colors hover:text-[var(--coral)]"
                 type="button"
+                onClick={handleProfile}
               >
                 {user.fullName}
               </button>

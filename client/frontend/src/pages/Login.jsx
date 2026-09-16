@@ -71,12 +71,6 @@ const Login = () => {
               onChange={handleChange}
             />
           </label>
-          <div className="form-row flex items-center justify-between gap-3 pt-2 text-xs">
-            <label className="check-label">
-              <input type="checkbox" /> Remember me
-            </label>
-            <a href="#forgot">Forgot password?</a>
-          </div>
           <button
             className="primary-button mt-5 flex w-full items-center justify-center gap-5 py-3"
             type="submit"
