@@ -5,6 +5,7 @@ import dns from 'dns'
 import cookieParser from 'cookie-parser'
 import customerRoutes from './routes/customer.route.js'
 import cors from 'cors'
+import productRoutes from './routes/product.route.js'
 const app = express()
 const Port = 8085
 dotenv.config()
@@ -21,6 +22,7 @@ app.use(cors({
     credentials: true
 }))
 app.use('/users',customerRoutes)
+app.use('/products', productRoutes)
 mongoose.connect(process.env.dbUrl).then(() => {
     console.log("Db Connected")
 }).catch((err) => {
