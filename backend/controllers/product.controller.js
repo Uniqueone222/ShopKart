@@ -5,7 +5,7 @@ export const createProduct = async (req,res)=>{
 
         const {name,description,price,category,image,stock} = req.body
         
-        if(!name || !description || !category || stock===null || price===null){
+        if(!name || !description || !category || stock===null || price===null || !image){
             return res.status(400).json({message: " Invalid product details"})
         }
         if(price<=0) return res.status(400).json({message: " Invalid Price"})
