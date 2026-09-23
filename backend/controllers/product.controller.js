@@ -6,13 +6,12 @@ export const createProduct = async (req,res)=>{
         const {name,description,price,category,image,stock} = req.body
         
         if(!name || !description || !category || stock===null || price===null){
-            res.status(400).json({message: " Invalid product details"})
+            return res.status(400).json({message: " Invalid product details"})
         }
-
-        if(price<=0) res.status(400).json({message: " Invalid Price"})
-        if(stock<0) res.status(400).json({message: " Invalid Stock"})
+        if(price<=0) return res.status(400).json({message: " Invalid Price"})
+        if(stock<0) return res.status(400).json({message: " Invalid Stock"})
         
-        const product = await Product.create(req.body)
+        const product = await Product.create({...req.body,category: category.toLowerCase()});
 
         res.status(201).json(product);
     } catch (error) {
@@ -22,7 +21,23 @@ export const createProduct = async (req,res)=>{
 
 export const getProducts = async (req,res) =>{
     try {
-        const products = await Product.find();
+        const { search, category } = req.query;
+
+        const query = {};
+
+        if (search) {
+            query.name = {
+                $regex: search,
+                $options: "i"
+            };
+        }
+
+        if (category) {
+            query.category = category.toLowerCase();
+        }
+
+
+        const products = await Product.find(query);
         res.status(200).json({
             success : true,
             count : products.length,
