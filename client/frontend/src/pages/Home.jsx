@@ -1,5 +1,4 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 import axiosInstance from "../axiosCalls/axios.js";
 import { useAuth } from "../context/AuthContext.jsx";
 const Home = () => {
@@ -87,10 +86,19 @@ const Home = () => {
               <em>Big difference.</em>
             </h1>
           </div>
-          <p>
-            Thoughtful things for everyday living, selected with a soft spot for
-            good design.
-          </p>
+          <div className="flex flex-col items-start gap-4">
+            <p>
+              Thoughtful things for everyday living, selected with a soft spot for
+              good design.
+            </p>
+            <button
+              className="rounded-full border border-[var(--line)] px-5 py-2 transition-colors hover:bg-[var(--butter)]"
+              type="button"
+              onClick={handleProduct}
+            >
+              View all products
+            </button>
+          </div>
         </section>
         <div className="shop-toolbar mt-12 flex flex-col items-start justify-between gap-3 border-b border-[var(--line)] pb-4 lg:mt-[72px] lg:flex-row lg:items-center">
           <div className="filter-pills flex max-w-full gap-2 overflow-x-auto">
