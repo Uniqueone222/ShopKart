@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser'
 import customerRoutes from './routes/customer.route.js'
 import cors from 'cors'
 import productRoutes from './routes/product.route.js'
+import wishlistRoutes from './routes/wishlist.route.js'
 const app = express()
 const Port = 8085
 dotenv.config()
@@ -23,6 +24,7 @@ app.use(cors({
 }))
 app.use('/users',customerRoutes)
 app.use('/products', productRoutes)
+app.use('/wishlist', wishlistRoutes)
 mongoose.connect(process.env.dbUrl).then(() => {
     console.log("Db Connected")
 }).catch((err) => {
