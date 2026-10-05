@@ -23,7 +23,11 @@ export const addToWishlist = async (req, res) => {
         }
 
         // Check duplicate
-        if (req.user.wishlist.includes(productId)) {
+        const alreadyWishlisted = req.user.wishlist.some(
+            (id) => id.toString() === productId
+        );
+
+        if (alreadyWishlisted) {
             return res.status(409).json({
                 message: "Product already in wishlist"
             });

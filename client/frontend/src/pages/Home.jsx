@@ -29,23 +29,16 @@ const Home = () => {
           aria-label="Main navigation"
         >
           <NavLink className="transition-colors" to="/home">
-            Shop
+            Home
           </NavLink>
-          <a className="transition-colors" href="/#categories">
-            Categories
-          </a>
-          <a className="transition-colors" href="/#deals">
-            Deals
-          </a>
+          <NavLink className="transition-colors" to="/products">
+            Products
+          </NavLink>
+          <NavLink className="transition-colors" to="/wishlist">
+            Wishlist
+          </NavLink>
         </nav>
         <div className="header-actions flex items-center gap-3 sm:gap-5">
-          <button
-            className="icon-button rounded-full p-1 transition-colors hover:bg-[var(--butter)]"
-            type="button"
-            aria-label="Search"
-          >
-            ⌕
-          </button>
           <Link
             className="cart-link transition-colors hover:text-[var(--coral)]"
             to="/home"

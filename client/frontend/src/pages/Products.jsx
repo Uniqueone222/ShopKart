@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axiosInstance from "../axiosCalls/axios.js";
 import ProductCard from "../components/ProductCard.jsx";
 import SearchBar from "../components/SearchBar.jsx";
@@ -45,6 +46,20 @@ const Products = () => {
   return (
     <section className="min-h-screen bg-[var(--paper)] px-5 py-12 text-[var(--ink)] sm:px-10 lg:px-[7vw] lg:py-16">
       <div className="mx-auto max-w-7xl">
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <Link
+            to="/home"
+            className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--paper)] px-4 py-2 text-xs font-bold uppercase tracking-[1.5px] text-[var(--ink)] transition-colors hover:border-[var(--coral)] hover:text-[var(--coral)]"
+          >
+            ← Back to home
+          </Link>
+          <Link
+            to="/wishlist"
+            className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--paper)] px-4 py-2 text-xs font-bold uppercase tracking-[1.5px] text-[var(--ink)] transition-colors hover:border-[var(--coral)] hover:text-[var(--coral)]"
+          >
+            ♡ Wishlist
+          </Link>
+        </div>
         <div className="mb-12 flex flex-col justify-between gap-6 border-b border-[var(--line)] pb-8 md:flex-row md:items-end">
           <div>
             <p className="eyebrow">The collection</p>

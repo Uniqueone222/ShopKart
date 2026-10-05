@@ -10,6 +10,7 @@ import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import Profile from "./pages/Profile.jsx";
 import Products from "./pages/Products.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
+import Wishlist from "./pages/Wishlist.jsx";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
               <Route path="/products" element={<ProtectedRoute><Products /></ProtectedRoute>} />
               <Route path="/products/:id" element={<ProtectedRoute><ProductDetails /></ProtectedRoute>} />
+              <Route path="/wishlist" element={<ProtectedRoute><Wishlist /></ProtectedRoute>} />
               <Route path="/signup" element={<PublicRoute><Signup /></PublicRoute>} />
             </Routes>
           </main>
