@@ -1,6 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
+import { useCart } from "../context/CartContext.jsx";
 
 const Landing = () => {
+  const { totalItems } = useCart();
+
   return (
     <div className="landing-page overflow-hidden">
       <header className="site-header sticky top-0 z-20 h-[78px] border-b border-[var(--line)] bg-[var(--paper)]/95 px-5 backdrop-blur sm:px-10 lg:px-[76px]">
@@ -34,10 +37,10 @@ const Landing = () => {
           </button>
           <Link
             className="cart-link transition-colors hover:text-[var(--coral)]"
-            to="/home"
+            to="/cart"
             aria-label="Shopping cart"
           >
-            Cart <span>0</span>
+            Cart <span>{totalItems}</span>
           </Link>
           <Link
             className="header-login hidden transition-colors hover:text-[var(--coral)] sm:block"

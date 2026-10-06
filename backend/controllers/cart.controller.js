@@ -2,6 +2,12 @@ import mongoose from "mongoose";
 import Customer from "../models/customer.model.js";
 import Product from "../models/product.model.js";
 
+const populateCartProducts = (customer) =>
+  customer.populate({
+    path: "cart.product",
+    select: "name price category image stock",
+  });
+
 export const addToCart = async (req, res) => {
   try {
     const { productId } = req.params;
@@ -40,6 +46,7 @@ export const addToCart = async (req, res) => {
     }
 
     await req.user.save();
+    await populateCartProducts(req.user);
 
     return res.status(200).json({
       success: true,
@@ -122,6 +129,7 @@ export const updateQuantity = async (req, res) => {
 
     cartItem.quantity = quantity;
     await req.user.save();
+    await populateCartProducts(req.user);
 
     return res.status(200).json({
       success: true,
@@ -162,10 +170,9 @@ export const removeFromCart = async (req, res) => {
       });
     }
 
-    customer.cart.pull({
-      product: productId,
-    });
+    customer.cart.splice(customer.cart.indexOf(cartItem), 1);
     await customer.save();
+    await populateCartProducts(customer);
 
     return res.status(200).json({
       success: true,

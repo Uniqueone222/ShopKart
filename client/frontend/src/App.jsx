@@ -11,26 +11,31 @@ import Profile from "./pages/Profile.jsx";
 import Products from "./pages/Products.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import Wishlist from "./pages/Wishlist.jsx";
+import { CartProvider } from "./context/CartContext.jsx";
+import Cart from "./pages/Cart.jsx";
 
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <div className="app-shell min-h-screen bg-[var(--paper)] text-[var(--muted)]">
-          <main className="flex-1">
-            <Routes>
-              <Route path="/" element={<PublicRoute><Landing /></PublicRoute>} />
-              <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-              <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-              <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
-              <Route path="/products" element={<ProtectedRoute><Products /></ProtectedRoute>} />
-              <Route path="/products/:id" element={<ProtectedRoute><ProductDetails /></ProtectedRoute>} />
-              <Route path="/wishlist" element={<ProtectedRoute><Wishlist /></ProtectedRoute>} />
-              <Route path="/signup" element={<PublicRoute><Signup /></PublicRoute>} />
-            </Routes>
-          </main>
-        </div>
-      </BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
+          <div className="app-shell min-h-screen bg-[var(--paper)] text-[var(--muted)]">
+            <main className="flex-1">
+             <Routes>
+                <Route path="/" element={<PublicRoute><Landing /></PublicRoute>} />
+                <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+                <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+                <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+                <Route path="/products" element={<ProtectedRoute><Products /></ProtectedRoute>} />
+                <Route path="/products/:id" element={<ProtectedRoute><ProductDetails /></ProtectedRoute>} />
+                <Route path="/wishlist" element={<ProtectedRoute><Wishlist /></ProtectedRoute>} />
+                <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>  }/>
+                <Route path="/signup" element={<PublicRoute><Signup /></PublicRoute>} />
+              </Routes>
+            </main>
+          </div>
+        </BrowserRouter>
+      </CartProvider>
     </AuthProvider>
   );
 }

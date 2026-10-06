@@ -1,12 +1,35 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../axiosCalls/axios.js";
+import { useCart } from "../context/CartContext.jsx";
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
+  const { addToCart } = useCart();
 
   const [wishlistState, setWishlistState] = useState("idle");
   const [wishlistError, setWishlistError] = useState("");
+  const [cartState, setCartState] = useState("idle");
+  const [cartError, setCartError] = useState("");
+
+  const handleAddToCart = async () => {
+    if (cartState === "adding" || product.stock < 1) {
+      return;
+    }
+
+    try {
+      setCartState("adding");
+      setCartError("");
+      await addToCart(product._id);
+      setCartState("added");
+    } catch (error) {
+      setCartState("idle");
+      setCartError(
+        error.response?.data?.message ||
+        "Unable to add product to cart. Please try again."
+      );
+    }
+  };
 
   const handleAddToWishlist = async () => {
     if (wishlistState === "saving" || wishlistState === "success") {
@@ -67,6 +90,17 @@ const ProductCard = ({ product }) => {
         </button>
 
         <button
+          onClick={handleAddToCart}
+          disabled={cartState === "adding" || product.stock < 1}
+        >
+          {cartState === "adding"
+            ? "Adding..."
+            : cartState === "added"
+            ? "Add Another"
+            : "Add to Cart"}
+        </button>
+
+        <button
           onClick={handleAddToWishlist}
           disabled={
             wishlistState === "saving" ||
@@ -80,6 +114,12 @@ const ProductCard = ({ product }) => {
             : "♡ Add to Wishlist"}
         </button>
       </div>
+
+      {cartError && (
+        <p className="mt-2 text-sm text-red-600" role="alert">
+          {cartError}
+        </p>
+      )}
 
       {wishlistState === "error" && (
         <p className="mt-2 text-sm text-red-600">
