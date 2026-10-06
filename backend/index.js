@@ -7,6 +7,7 @@ import customerRoutes from './routes/customer.route.js'
 import cors from 'cors'
 import productRoutes from './routes/product.route.js'
 import wishlistRoutes from './routes/wishlist.route.js'
+import cartRoutes from './routes/cart.route.js'
 const app = express()
 const Port = 8085
 dotenv.config()
@@ -22,9 +23,10 @@ app.use(cors({
     origin: ["http://localhost:5173", "http://localhost:5174"],
     credentials: true
 }))
-app.use('/users',customerRoutes)
+app.use('/users', customerRoutes)
 app.use('/products', productRoutes)
 app.use('/wishlist', wishlistRoutes)
+app.use('/cart', cartRoutes)
 mongoose.connect(process.env.dbUrl).then(() => {
     console.log("Db Connected")
 }).catch((err) => {

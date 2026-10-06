@@ -73,7 +73,15 @@ export const loginCustomer = async (req,res)=>{
             const token = genToken(user._id)
             res.cookie('token',token, cookieOptions)
 
-            return res.status(200).json({message:"User Logged in" , userData:user})
+            return res.status(200).json({
+                message: "User Logged in",
+                userData: {
+                    id: user._id,
+                    fullName: user.fullName,
+                    email: user.email,
+                    phone: user.phone
+                }
+            })
         }
         else{
             return res.status(401).json({message:"Wrong Password"})

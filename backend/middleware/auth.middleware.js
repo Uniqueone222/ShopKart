@@ -9,6 +9,10 @@ export const isAuthenticated = async (req,res,next)=>{
         
         const customer = await Customer.findById(decoded.userId)
 
+        if (!customer) {
+            return res.status(401).json({message:"User not found"})
+        }
+
         req.user = customer
 
         next()
