@@ -131,7 +131,7 @@ Set these environment variables in the hosting providers:
 | Service | Variable | Value |
 | --- | --- | --- |
 | Frontend | `VITE_API_URL` | Backend origin, for example `https://your-api.onrender.com` (no trailing slash) |
-| Backend | `CLIENT_URL` | Exact frontend origin, for example `https://your-shop.vercel.app` (no trailing slash) |
+| Backend | `CLIENT_URL` | Comma-separated exact frontend origins, e.g. `https://your-shop.vercel.app,https://your-preview.vercel.app` |
 | Backend | `NODE_ENV` | `production` |
 | Backend | `dbUrl` | Production MongoDB connection string |
 | Backend | `jwt_secret` | A long, unique secret |
@@ -140,7 +140,7 @@ Set these environment variables in the hosting providers:
 
 Set `VITE_API_URL` in the frontend host before building/redeploying; Vite embeds `VITE_` variables into the frontend build. Keep backend secrets only in the backend host's secret/environment settings.
 
-The backend uses credentialed CORS and the authentication cookie is configured for cross-site HTTPS in production (`SameSite=None; Secure`). Browsers may still restrict third-party cookies when the frontend and API use unrelated hosting domains; using custom domains under the same registrable domain is the most reliable setup. Test signup/login, page refresh while authenticated, and logout on the deployed domains.
+The backend uses credentialed CORS and the authentication cookie is configured for cross-site HTTPS in production (`SameSite=None; Secure`). `CLIENT_URL` can contain multiple comma-separated frontend origins; match the browser origin exactly (scheme and hostname), without a path. The backend trims surrounding whitespace and trailing slashes. Redeploy/restart the backend after changing this variable. Browsers may still restrict third-party cookies when the frontend and API use unrelated hosting domains; using custom domains under the same registrable domain is the most reliable setup. Test signup/login, page refresh while authenticated, and logout on the deployed domains.
 
 ## Main Application Flow
 

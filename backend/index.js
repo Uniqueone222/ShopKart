@@ -16,8 +16,11 @@ const PORT = process.env.PORT || 8085;
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:5174',
-  process.env.CLIENT_URL,
-].filter(Boolean);
+  ...(process.env.CLIENT_URL || '')
+    .split(',')
+    .map((origin) => origin.trim().replace(/\/+$/, ''))
+    .filter(Boolean),
+];
 
 app.use(express.json({ limit: '1mb' }));
 app.use(express.urlencoded({ extended: true }));
@@ -29,6 +32,7 @@ app.use(
         callback(null, true);
         return;
       }
+      console.warn(`Blocked CORS request from origin: ${origin}`);
       callback(new Error('Not allowed by CORS'));
     },
     credentials: true,
