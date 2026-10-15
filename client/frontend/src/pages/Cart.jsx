@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 const Cart = () => {
@@ -13,6 +13,7 @@ const Cart = () => {
         totalItems,
         subtotal,
     } = useCart();
+    const navigate = useNavigate();
     const [pendingProductId, setPendingProductId] = useState(null);
     const [actionError, setActionError] = useState("");
 
@@ -283,6 +284,7 @@ const Cart = () => {
                         </div>
 
                         <button
+                            onClick={() => navigate("/checkout")}
                             className="flex min-h-[52px] w-full items-center justify-center gap-3 bg-[var(--ink)] px-5 text-sm font-bold text-white transition-colors hover:bg-[var(--coral)]"
                         >
                             Proceed to Checkout <span aria-hidden="true">→</span>

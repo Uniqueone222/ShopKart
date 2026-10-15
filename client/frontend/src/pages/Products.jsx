@@ -53,12 +53,26 @@ const Products = () => {
           >
             ← Back to home
           </Link>
-          <Link
-            to="/wishlist"
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--paper)] px-4 py-2 text-xs font-bold uppercase tracking-[1.5px] text-[var(--ink)] transition-colors hover:border-[var(--coral)] hover:text-[var(--coral)]"
-          >
-            ♡ Wishlist
-          </Link>
+          <div className="flex flex-wrap gap-2">
+            <Link
+              to="/wishlist"
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--paper)] px-4 py-2 text-xs font-bold uppercase tracking-[1.5px] text-[var(--ink)] transition-colors hover:border-[var(--coral)] hover:text-[var(--coral)]"
+            >
+              ♡ Wishlist
+            </Link>
+            <Link
+              to="/cart"
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--paper)] px-4 py-2 text-xs font-bold uppercase tracking-[1.5px] text-[var(--ink)] transition-colors hover:border-[var(--coral)] hover:text-[var(--coral)]"
+            >
+              Cart
+            </Link>
+            <Link
+              to="/orders"
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--paper)] px-4 py-2 text-xs font-bold uppercase tracking-[1.5px] text-[var(--ink)] transition-colors hover:border-[var(--coral)] hover:text-[var(--coral)]"
+            >
+              My Orders
+            </Link>
+          </div>
         </div>
         <div className="mb-12 flex flex-col justify-between gap-6 border-b border-[var(--line)] pb-8 md:flex-row md:items-end">
           <div>

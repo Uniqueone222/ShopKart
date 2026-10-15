@@ -64,6 +64,7 @@ const Home = () => {
             <NavLink to="/home">Home</NavLink>
             <NavLink to="/products">Products</NavLink>
             <NavLink to="/wishlist">Wishlist</NavLink>
+            <NavLink to="/orders">Orders</NavLink>
           </nav>
         </div>
         <div className="header-actions home-header-actions flex items-center">
@@ -115,12 +116,20 @@ const Home = () => {
               Thoughtful things for everyday living, selected with a soft spot for
               good design.
             </p>
-            <Link
-              className="rounded-full border border-[var(--line)] px-5 py-2 text-sm font-bold text-[var(--ink)] transition-colors hover:border-[var(--coral)] hover:bg-[var(--butter)]"
-              to="/products"
-            >
-              View all products
-            </Link>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                className="rounded-full border border-[var(--line)] px-5 py-2 text-sm font-bold text-[var(--ink)] transition-colors hover:border-[var(--coral)] hover:bg-[var(--butter)]"
+                to="/products"
+              >
+                View all products
+              </Link>
+              <Link
+                className="rounded-full bg-[var(--ink)] px-5 py-2 text-sm font-bold text-white transition-colors hover:bg-[var(--coral)]"
+                to="/orders"
+              >
+                My orders
+              </Link>
+            </div>
           </div>
         </section>
         <section className="mt-12 lg:mt-[72px]" aria-labelledby="home-products-heading">

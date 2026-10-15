@@ -1,6 +1,6 @@
+import 'dotenv/config'
 import express from 'express'
 import mongoose from 'mongoose'
-import dotenv from 'dotenv'
 import dns from 'dns'
 import cookieParser from 'cookie-parser'
 import customerRoutes from './routes/customer.route.js'
@@ -8,9 +8,9 @@ import cors from 'cors'
 import productRoutes from './routes/product.route.js'
 import wishlistRoutes from './routes/wishlist.route.js'
 import cartRoutes from './routes/cart.route.js'
+import orderRoutes from './routes/order.route.js'
 const app = express()
 const Port = 8085
-dotenv.config()
 
 dns.setServers([
   '8.8.8.8', // Google DNS
@@ -27,6 +27,7 @@ app.use('/users', customerRoutes)
 app.use('/products', productRoutes)
 app.use('/wishlist', wishlistRoutes)
 app.use('/cart', cartRoutes)
+app.use('/orders', orderRoutes)
 mongoose.connect(process.env.dbUrl).then(() => {
     console.log("Db Connected")
 }).catch((err) => {
@@ -41,4 +42,3 @@ app.get("/",(req,res)=>{
 app.listen(Port , ()=>{
     console.log(`Server Started at ${Port}`)
 })
-
