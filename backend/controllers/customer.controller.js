@@ -3,8 +3,14 @@ import bcrypt from 'bcrypt'
 import genToken from "../utils/generateToken.js";
 
 
-const cookieOptions ={
-    httpOnly: true
+const isProduction = process.env.NODE_ENV === "production";
+
+const cookieOptions = {
+    httpOnly: true,
+    sameSite: isProduction ? "none" : "lax",
+    secure: isProduction,
+    path: "/",
+    maxAge: 7 * 24 * 60 * 60 * 1000
 }
 
 export const registerCustomer = async (req,res)=>{
@@ -94,7 +100,12 @@ export const loginCustomer = async (req,res)=>{
 }
 
 export const logoutCustomer = (req, res) => {
-    res.clearCookie("token")
+    res.clearCookie("token", {
+        httpOnly: true,
+        sameSite: isProduction ? "none" : "lax",
+        secure: isProduction,
+        path: "/"
+    })
     res.status(200).json({ message: "Logged out" })
 }
 
